@@ -1,0 +1,181 @@
+
+{% extends "layout.html" %}
+{% block body %}
+
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+
+<script>
+
+function go2(nr) {
+  $('.container').fadeToggle(200);
+  $('#suggestions').fadeToggle(200);
+  $('#footerBG').fadeToggle(200);
+
+  $('.message2').toggleClass('comein');
+  $('.check2').toggleClass('scaledown');
+  $('#submit').fadeToggle(nr);
+}
+
+
+
+function go(nr) {
+  $('.container').fadeToggle(200);
+  $('#suggestions').fadeToggle(200);
+  $('#footerBG').fadeToggle(200);
+
+  $('.message').toggleClass('comein');
+  $('.check').toggleClass('scaledown');
+  $('#submit').fadeToggle(nr);
+}
+
+
+
+
+    function getCourseName(courseName){
+    alert(courseName);
+
+    }
+
+    function fun(e){
+        console.log(e);
+
+        var courseName =e['value'];
+        console.log(courseName);
+
+
+
+        var data={}
+    data["courseName"]=courseName
+    courseName=JSON.stringify(data)
+    console.log('in enroll script',courseName);  
+    
+    
+    
+    
+    $.ajax({
+            url: '/api/enroll', // url where to submit the request
+            type : "post", // type of action POST || GET
+        
+            data : courseName, // post data || get data
+            dataType : 'json',
+            contentType: "application/json; charset=utf-8",
+
+            success : function(result) {
+                // you can see the result from the console
+                // tab of the developer tools
+                console.log(result)
+
+                result=result['msg']
+                if (result=="True")
+                {
+                    go(50)
+
+                }
+                else{
+                    go2(50)
+
+
+
+                }
+            },
+            error: function(xhr, resp, text) {
+                console.log("error idhr");
+                console.log(xhr, resp, text);
+                alert("Enrollment Failed")
+            }
+        })         
+
+    }
+
+    $(document).ready(function(){
+    // click on button submit
+    $("#submit").on('click', function(e){
+        e.preventDefault();
+        // send ajax
+        console.log('in script');
+
+        
+
+
+        
+
+    });
+});
+
+
+
+</script>
+
+
+<div class='message'>
+    <div class='check'>
+      &#10004;
+    </div>
+    <p style="font-size: 1.5rem">
+      Congratulations for the successfull enrollment in the course
+    </p>
+    
+    <button id='ok' onclick="go(500)" >
+      OK
+    </button>
+  </div>
+  
+  
+  <div class='message2'>
+      <div class='check2'>
+          ❌    </div>
+      <p style="font-size: 1.5rem">
+        You are already enrolled in this course
+      </p>
+      
+      <button id='ok2' onclick="go2(500)" >
+        OK
+      </button>
+    </div>
+    
+
+
+    <div>
+        <h2 style="font-family: 'Arima',cursive ; text-align: center">Available Courses</h2>
+    </div>
+
+    {% if courses ==-1 %}
+    <h3>Sorry we have currently no courses Available</h3>
+    {%  endif %}
+
+    {%  if courses !=-1 %}
+
+
+
+    <div class="container">
+    <div class="cards grid-row">
+                        {% for course in courses %}
+
+        <div class="card" style="height: 370px;">
+        <div class="card-top">
+            <h5 style="margin-left: 3px">{{course[0]}}</h5>
+        </div>
+            <div class="card-info">
+
+                 
+<!--          <span class="date">Monday, Jan 20, 2021</span>-->
+            <div style="height: 12rem;">
+            <p class="excerpt">{{course[1]}}</p>
+            </div>
+             </div>
+        <div class="card-bottom flex-row">
+            <button type="submit"  onclick="fun(this)" id="submit" value="{{course[0]}}" name="enroll" class="enrollseeMore">Enroll Now</button>
+            <form action="/seemore" method="post">
+                <button name="submit" type="submit" value="{{course[0]}}"  class="enrollseeMore">See more</button></form>
+        </div>
+      </div>
+        {% endfor %}
+
+
+
+    </div>
+  </div>
+  {% endif %}
+
+{% endblock %}

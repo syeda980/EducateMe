@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New Page Name</title>
+    <link rel="stylesheet" href="static/admin.css">
+    <link rel="stylesheet" href="static/home.css">
+    <link rel="stylesheet" href="static/getNewPageName.css">
+    <link href="https://fonts.googleapis.com/css2?family=Arima:wght@600;700&family=Inconsolata&display=swap"
+        rel="stylesheet">
+
+</head>
+<body>
+
+    <header>
+        <a href="/homescreen_logo"><img id='logoAdminPanel' src="/static/images/logo1.1.png" alt="" srcset=""></a>
+        <h2 id="headSec"> EducateMe
+            <!-- <font color="white">ME</font> -->
+        </h2>
+       <div id="welcomeEditor">
+        Editor's Panel
+
+       </div>
+    </header>
+
+<h1>New Page Info</h1>
+    <div class="wrapper">
+		<form action="/addNewPage" method="post" class="form" >
+<!--            <img id='watermark' src="/static/images/logo1.1.png" alt="" srcset="">-->
+			<div class="row">
+				<div class="input-group">
+					<label>Enter Page Name</label>
+					<input type="text" name="pageName" id="name" required>
+				</div>
+			</div>
+			<div class="input-group textarea">
+				<label >Enter Page Content</label>
+				<textarea id="suggestion" name="pageContent" placeholder="Add Content Here...." required></textarea>
+			</div>
+			<div class="input-group">
+				<button name="submit" class="btn" value={{courseName}} type="submit" >Submit</button>
+			</div>
+		</form>
+</div>
+
+
+    <!--footer-->
+     <footer id="footerBG">
+        <div id="urls">
+            <ul id="footerurls">
+                <li class="imgBG"> <a href="https://www.Facebook.com" target="_blank"><img class="logosize" src="static/images/faceook_logo1.png" alt="No image"> Facebook</a></li>
+                <li class="imgBG"><a href="https://www.Instagram.com"target="_blank"> <img class="logosize" src="static/images/instagram_logo1.png" alt="No image"> Instagram</a></li>
+                <li class="imgBG"> <a href="https://www.youtube.com"target="_blank"><img class="logosize" src="static/images/youtube_logo1.png" alt="No image"> Youtube</a></li>
+            </ul>
+        </div>
+
+
+    </footer>
+<hr>
+
+<!--    copyright and logo-->
+  <div id="copyright">
+        <p>EducateMe is optimized for learning, testing, and training. Examples might be simplified to improve reading and basic understanding. Tutorials, references, and examples are constantly reviewed to avoid errors, but we cannot warrant full correctness of all content. </p>
+        <h5>
+            Copyright © 2022 EducateMe.com
+        </h5>
+    </div>
+    <div >
+        <img  id="footerLogo" src="static/images/logo1.1.png" alt="">
+    </div>
+
+<!--<form action="/addNewPage" method="post">-->
+<!--    <label>Enter Page Name</label>-->
+<!--    <input type="text" name="pageName">-->
+<!--    <label>Enter Page Content</label>-->
+<!--    <textarea name="pageContent" placeholder="Type Here..."></textarea>-->
+<!--    <input type="submit" value="Submit Page">-->
+<!--</form>-->
+</body>
+</html>

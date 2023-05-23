@@ -1,0 +1,22 @@
+
+h2{
+    text-align: center;
+    font-family: 'Arima', cursive;
+    font-size: 30px;
+
+}
+#copyright h5{
+    display: block;
+    width: 100%;
+    margin: auto;
+    font-size: 20px;
+}
+#copyright p{
+    font-family: 'Arima', cursive;
+
+}
+#navbarlist  a :visited {
+    color: #ee9720;
+    background-color: rgb(84, 74, 56);
+
+}  

@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Admin Home Page</title>
+    <link rel="stylesheet" href="static/admin.css">
+    <link rel="stylesheet" href="static/home.css">
+    <link href="https://fonts.googleapis.com/css2?family=Arima:wght@600;700&family=Inconsolata&display=swap"
+        rel="stylesheet">
+
+<!--    <script src="./viewCourses.js" ></script>-->
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+
+
+
+
+    
+
+    
+
+</head>
+<body style="background-color: #8fadad; width: fit-content">
+
+    <header>
+        <a href="/editorHomePage"><img id='logoAdminPanel' src="/static/images/logo1.1.png" alt="" srcset=""></a>
+        <h2 id="headSec"> EducateMe
+            <!-- <font color="white">ME</font> -->
+        </h2>
+       <div id="welcomeEditor">
+        Editor's Panel
+
+       </div>
+
+    </header>
+
+    <div id="editorInfo">
+<!--buttons menu-->
+<div class="buttonsMenu">
+<!-- {#     <button class="passwordButton" ><a id="forgotpwdLink" href="/forgotPassword" >Change Your Password</a>  </button>#} -->
+    <button class="passwordButton" onclick="displayProfile()">My Profile</button>
+        <button class="passwordButton" onclick="getCourseNameEditor('{{editorEmail}}')" >Add Quiz</button>
+
+    <!-- href="/displayCourses" -->
+<!--    <a  href="" >-->
+    <button class="passwordButton"  type="submit" id="submit" value="{{editorEmail}}"  >View My Courses</button></a>
+    <form action="/getCourseName" >
+    <button class="passwordButton" > Add a new Course</button></form>
+    <a href="/forgotPassword" id="forgotpwdLink"> <button class="passwordButton">  Change Your Password</button> </a>
+    <a href="/logout"> <button class="passwordButton"  >  Logout</button> </a>
+
+
+<!--profile Card-->
+    <div class="profileCard" id="profile">
+        <button class="close" id="closeButton" onclick="closeWindow()">&times;</button>
+        <img id="profileimg" src="/static/images/{{profilePic}}" alt="">
+        <h1 style="font-size: 36px;margin: 0px">{{editorName}} </h1>
+        <h4 style="font-size: 1rem;margin: 0px">Course Editor</h4>
+        <h3 style="font-size: 17px;margin: 0px">Email: {{editorEmail}}</h3>
+        <h3 style="font-size: 17px;margin: 0px">Phone# {{phoneNo}}</h3>
+    </div></div> 
+
+
+<!--        side info box-->
+         <div id="infoBox">
+            <table id="infoTable">
+                <tr>
+                    <td style="font-weight:bold;font-size: 20px;">Name</td>
+                    <td>{{editorName}}</td>
+                </tr>
+
+                 <tr>
+                    <td style="font-weight:bold;font-size: 20px;">Id</td>
+                    <td>{{Id}}</td>
+                </tr>
+
+                <tr>
+                    <td style="font-weight:bold;font-size: 20px;">Email</td>
+                    <td>{{editorEmail}}</td>
+                </tr>
+
+                <tr>
+                    <td style="font-weight:bold;font-size: 20px;padding-left: 10px;">No Of Courses</td>
+
+                    <td>{{noOfCourses}}</td>
+                </tr>
+
+
+            </table>
+        </div> 
+        <!-- <button id="mybutton">ShowContacts</button> -->
+
+    </div>
+    <div id="completeTable">
+        <table id="editorCoursesTable" border="2">
+            <thead>
+                    <tr>
+                        <th>Course Id</th>
+                        <th>Course Name</th>
+                        <th>Course Pages</th>
+                        <th>Students Enrolled</th>
+                        <th>Actions</th>
+                    </tr>
+                </thead>
+                <tfoot>
+                    <tr>
+                       <th>Course Id</th>
+                        <th>Course Name</th>
+                         <th>Course Pages</th>
+                        <th>Students Enrolled</th>
+                        <th>Actions</th>
+
+                    </tr>
+                </tfoot>
+
+
+        </table>
+        <div  class="hideButton" onclick="hideEditorCourses()"id="addCourseBtn" >
+            <a class="addCourseButton"><u>Hide</u></a>
+
+    </div>
+
+
+
+    </div>
+
+{% if displayCourses==False%}
+    <div id="coursesNotFound"> <h1>No Courses Yet</h1>
+    </div>
+
+{% endif %}
+
+
+
+    <!-- {% if courses!= None and displayCourses==True%} -->
+<!--editor courses table-->
+
+<!-- <div id="editorCourses">
+
+    <table id="editorCoursesTable"  >
+        <tbody style="text-align:center ;">
+
+          <tr>
+              <th>
+                  Course Id
+              </th>
+              <th>Course Name</th>
+              <th>Course Pages</th>
+              <th>Students Enrolled</th>
+              <th>Action</th>
+          </tr>
+
+
+           {% for course in courses %}
+        <tr>
+            <td>{{course[0]}}</td>
+            <td>{{course[1]}}</td>
+            <td>{{course[2]}}</td>
+            <td>{{course[3]}}</td>
+            <td style="border-bottom: none;">
+                <form action="/deleteCourse" method="post">
+                <button  type="submit" name="submit" value={{course[1]}} class="deleteButton" > Delete</button>
+                    </form>
+                <form action="/viewCoursePages" method="post" >
+                <button  type="submit" class="deleteButton" value={{course[1]}} name="submit"  > View</button> </form>
+            </td>
+
+        </tr>
+                              {% endfor %} -->
+
+
+
+
+        </tbody>
+
+
+    </table>
+
+
+
+    <div  class="hideButton" onclick="hideEditorCourses()"id="addCourseBtn" >
+            <a class="addCourseButton"><u>Hide</u></a>
+
+    </div>
+
+
+
+</div>
+    {% endif %} -->
+
+
+<!--footer-->
+     <footer id="footerBG" style="background-color: #8fadad">
+        <div id="urls">
+            <ul id="footerurls">
+                <li class="imgBG"> <a href="https://www.Facebook.com" target="_blank"><img class="logosize" src="static/images/faceook_logo1.png" alt="No image"> Facebook</a></li>
+                <li class="imgBG"><a href="https://www.Instagram.com"target="_blank"> <img class="logosize" src="static/images/instagram_logo1.png" alt="No image"> Instagram</a></li>
+                <li class="imgBG"> <a href="https://www.youtube.com"target="_blank"><img class="logosize" src="static/images/youtube_logo1.png" alt="No image"> Youtube</a></li>
+            </ul>
+        </div>
+
+
+    </footer>
+<hr>
+
+<!--    copyright and logo-->
+  <div id="copyright">
+        <p>EducateMe is optimized for learning, testing, and training. Examples might be simplified to improve reading and basic understanding. Tutorials, references, and examples are constantly reviewed to avoid errors, but we cannot warrant full correctness of all content. </p>
+        <h5>
+            Copyright © 2022 EducateMe.com
+        </h5>
+    </div>
+    <div >
+        <img  id="footerLogo" src="static/images/logo1.1.png" alt="">
+    </div>
+
+
+    <a href="#index.html" id="click-btn"><button>View</button></a>
+    
+<!--script-->
+<script>
+   function displayQuiz()
+   {
+      window.load("quiz.html")
+   }
+
+
+
+   function deleteCourse(courseName)
+   {
+    data={}
+    data["courseName"]=courseName
+        courseName=JSON.stringify(data)
+    $.ajax({
+
+        url: '/api/deletecourseapi', // url where to submit the request
+        type : "post", // type of action POST || GET
+
+        data : courseName, // post data || get data
+        dataType : 'json',
+        contentType: "application/json; charset=utf-8",
+
+        success : function(result) {
+
+        console.log("in success function");
+
+        if(result["msg"]=="true")
+        {
+        alert('course delete successfully');
+        }
+        else{
+        alert("course not deleted");
+        }
+        location.reload();
+        },
+        error: function(xhr, resp, text) {
+        console.log("error idhr");
+        console.log(xhr, resp, text);
+        alert("ererw")
+        }
+        });
+
+   }
+
+    function displayCourse() {
+        console.log("inside displaye courses")
+
+        const container = document.getElementById("editorCourses")
+        container.style.display="flex";
+    }
+    function displayProfile() {
+        const container = document.getElementById("profile")
+        container.style.display="block";
+    }
+    function closeWindow() {
+        const container = document.getElementById("profile")
+        container.style.display="none";
+    }
+
+    function hideEditorCourses()
+    {
+    const container = document.getElementById("completeTable")
+        container.style.display="none";
+
+    }
+    function displayTable(courses)
+    {
+
+    }
+
+</script>
+
+
+<script>
+
+    function getCourseNameEditor(editorEmail)
+    {
+        var courseName=prompt("enter course name");
+        alert(editorEmail);
+        data={};
+        data["courseName"]=courseName;
+        data["editorEmail"]=editorEmail;
+        data=JSON.stringify(data);
+        $.ajax({
+
+url: '/api/checkcourseexisteditor', // url where to submit the request
+type : "post", // type of action POST || GET
+
+data : data, // post data || get data
+dataType : 'json',
+contentType: "application/json; charset=utf-8",
+
+success : function(result) {
+
+    result=result['msg']
+    if(result==1)
+    {
+        alert('yes course exist');
+        str="http://127.0.0.1:5000/quiz/"+courseName
+    window.location=str
+
+
+
+    }
+    else{
+        alert('wrong course name')
+
+    }
+
+    
+
+
+    
+},
+error: function(xhr, resp, text) {
+    console.log("error idhr");
+    console.log(xhr, resp, text);
+    alert("ererw")
+}
+})
+
+
+    }
+
+function viewButtonClicked(courseName){
+
+    data={}
+    data["courseName"]=courseName
+        courseName=JSON.stringify(data)
+    $.ajax({
+
+url: '/api/viewcourseapi', // url where to submit the request
+type : "post", // type of action POST || GET
+
+data : courseName, // post data || get data
+dataType : 'json',
+contentType: "application/json; charset=utf-8",
+
+success : function(result) {
+
+    console.log("in success function");
+    courseName=result['courseName']
+    alert(courseName)
+    str="http://127.0.0.1:5000/my/"+courseName
+    window.location=str
+
+
+   
+    //location.reload();
+
+
+    
+
+
+    
+},
+error: function(xhr, resp, text) {
+    console.log("error idhr");
+    console.log(xhr, resp, text);
+    alert("ererw")
+}
+})
+
+
+
+// var table = $('#editorCoursesTable').DataTable();
+
+// var data = table
+//     .rows()
+//     .data();
+
+//     console.log('in view button',data[0][0]);
+
+}
+
+
+    function mybtn(course)
+    {
+        console.log('in my btn function ',course);
+    }
+
+
+
+    $(document).ready(function(){
+    console.log("aksjdklsaj");
+    // click on button submit
+    $("#submit").on('click', function(e){
+        $("#editorCourses").css("display", "flex");
+
+        e.preventDefault();
+        // send ajax
+
+        var editorEmail=$('#submit').val();
+        var data={}
+        data["email"]=editorEmail
+        editorEmail=JSON.stringify(data)
+        console.log(editorEmail);
+        document.getElementById("completeTable").style.display="block";
+        $.ajax({
+
+            url: '/api/displayEditorCourses', // url where to submit the request
+            type : "post", // type of action POST || GET
+
+            data : editorEmail, // post data || get data
+            dataType : 'json',
+            contentType: "application/json; charset=utf-8",
+
+            success : function(result) {
+
+                console.log("in success function");
+
+                console.log(result);
+
+
+                if(result !=null || result !=""){
+                            table = $('#editorCoursesTable').DataTable( {
+                                "bPaginate": true,
+                                "bFilter": false,
+                                "bInfo": true,
+                                responsive: true,
+                                data: result ,destroy: true,
+                                rows: [
+                                    { data },
+                                ],
+                                        columnDefs: [
+                                            {
+                                                
+                                                targets: 4,
+                                                data: null,
+                                                defaultContent: '<button    id="viewBtnDetails" class="deleteButton"">View</button>    <button  id="dltBtnDetails" class="deleteButton">Delete</button>'
+
+                                            },
+                                            { "width": "30%", "targets": 1 }
+
+                                        ],
+                            });
+
+
+                            $('#editorCoursesTable tbody').on('click', '[id*=dltBtnDetails]', function () {
+            var data = table.row($(this).parents('tr')).data();
+            var courseName = data[1];
+            deleteCourse(courseName)
+           
+        });
+        $('#editorCoursesTable tbody').on('click', '[id*=viewBtnDetails]', function () {
+            var data = table.row($(this).parents('tr')).data();
+            var courseName = data[1];
+            viewButtonClicked(courseName)
+           
+        });
+                }
+
+   
+                
+            },
+            error: function(xhr, resp, text) {
+                console.log("error idhr");
+                console.log(xhr, resp, text);
+            }
+        })
+
+    });
+});
+
+</script>
+
+</body>
+</html>

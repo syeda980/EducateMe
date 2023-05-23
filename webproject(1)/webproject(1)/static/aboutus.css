@@ -1,0 +1,176 @@
+/** {*/
+/*    padding: 0px;*/
+/*    margin: 0px;*/
+/*    box-sizing: border-box;*/
+/*}*/
+body {
+    background-color: white;
+    background-color: white;
+}
+/*.box{*/
+/*    !* border: 2px solid red; *!*/
+/*    padding: 50px;*/
+/*    text-align: left;*/
+/*    color: black;*/
+/*    line-height: 40px;*/
+/*    !*background-color: beige;*!*/
+/*    background-color: rgba(247, 248, 253)*/
+/*    !* font-family: rgb(219, 209, 190) 'Arima', cursive; *!*/ 
+/*}*/
+.container1 {
+    /* border: 2px solid red; */
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    background-color: aliceblue ;
+    box-shadow: 0 4px 8px 0 #0b0c0c;
+    border: 2px solid #154962;
+    padding: 6px 16px;
+    width: 320px;
+    height: 350px;
+}
+
+/* .card {
+    box-shadow: 0 4px 8px 0 rgba(248, 216, 216, 0.2);
+    margin: 8px;
+    height: 80px;
+} */
+/* .column {
+    float: left;
+    width: 33.3%;
+    margin-bottom: 16px;
+    padding: 0 8px;
+} */
+/* .row {
+    float: left;
+    margin-bottom: 16px;
+    padding: 0 8px;
+} */
+.button1{
+    /*margin-top: 8px;*/
+    /*margin-bottom: 8px;*/
+    padding: 10px;
+    background-color: #154962;
+    border-radius: 30px;
+    border: none;
+    outline: 0px;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    color: white;
+}
+#gototop {
+    border-radius: 30px;
+    border: none;
+    outline: 0px;
+    display: inline-block;
+    text-align: center;
+    cursor: pointer;
+    color: white;
+    background-color: #154962;
+    margin-left: 80%;
+    margin-bottom: 8px;
+    margin-top: 8px;
+    font-weight: bold;
+    width: 150px;
+    height: 40px;
+    font-size: 15px;
+}
+.email{
+    margin-top: 8px;
+    color: blue;
+}
+.title{
+    color: gray;
+    margin-top: 10px;
+    margin-bottom: 10px;
+}
+.aboutuscards img{
+    height: 79px;
+    border-radius: 40%;
+    width: 70px;
+    padding-bottom: 3px;
+}
+.rowss{
+    /* border: 2px solid red; */
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    padding: 5px 0px;
+    justify-content: space-evenly;
+    margin-bottom: 20px;
+}
+.aboutuscards{
+    /* border: 2px solid orange; */
+    /* display: flex;
+    flex-direction: column;
+    height: 300px;
+    width: 309px;
+    box-shadow: 0 4px 8px 0 #0b0c0c;
+    border: 2px solid black;
+    text-align: center;
+    margin-bottom: 10px;
+    margin-right: 47px;
+    margin-left: 47px;
+    padding: 27px 0px;
+    flex-wrap: wrap;
+    justify-content: space-evenly */
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 320px;
+    height: 334px;
+    padding-top: 8px;
+    /* align-items: center; */
+}
+.box a:link, a:visited {
+    background-color: #154962;
+    color: white;
+    padding: 10px 19px;
+    text-align: center;
+    text-decoration: none;
+    display: inline-block;
+    font-size: 20px;
+}
+.box a:hover, #gototop:hover, .button:hover{
+    color: #ee9720;
+}
+/*.paratext{*/
+/*    margin-left: 60px;*/
+/*    margin-right: 60px;*/
+/*    font-size: 18px;*/
+/*    text-align: justify ;*/
+/*}*/
+/*#contactimg{*/
+/*    !*margin-left: 710px;*!*/
+/*    height: 196px;*/
+/*    width: 277px;*/
+/*    float: right;*/
+/*    margin: -50px 117px 0px 60px;*/
+/*}*/
+#contactus, #aboutwebsite, #termsandservices, #courses, #ourteam{
+    /*border: red 2px solid;*/
+    padding-bottom: 15px;
+    height: auto;
+}
+#contactus, #aboutwebsite, #termsandservices{
+    /*border: red 2px solid;*/
+    background-color: rgb(219, 209, 190);
+    padding-bottom: 15px;
+}
+/*h3{*/
+/*    margin-left: 20px;*/
+/*    font-weight: bold;*/
+/*    font-size: 25px;*/
+/*    padding: 10px;*/
+/*}*/
+
+.paratext
+{
+     text-align: center;
+     color: #6f7782;
+     font-size: 18px;
+     font-weight: 500;
+     margin: 0;
+     margin-bottom: 15px;
+}

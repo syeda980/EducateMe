@@ -1,0 +1,201 @@
+
+   <!DOCTYPE html>
+   <html lang="en">
+   <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
+
+       <link rel="stylesheet" href="../static/home.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
+   </head>
+
+   
+   <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+    <script>
+              function addQuestion()
+{
+var paragraph = document.createElement("p");
+paragraph.contentEditable="true";
+document.getElementById("divTag").appendChild(paragraph);
+
+
+
+
+
+
+
+
+}
+
+
+
+function submitQuestion(courseName)
+{
+  courseName=courseName
+  tag =document.getElementById('divTag');
+  question=tag.textContent;
+  if (question== '')
+  {
+    question=prompt('Enter question first');
+  }
+  option1=prompt('Enter option 1')
+
+  option2=prompt('Enter option 2')
+  option3=prompt('Enter option 3')
+  option4=prompt('Enter option 4');
+  correctOption=prompt('Enter correct option');
+  // if (correctOption!='1' && correctOption!='2'  && correctOption!='3' && correctOption!='4'  )
+  // {
+  //   correctOption=prompt("kindly enter correct option (1/2/3/4)")
+  // }
+
+
+  data={};
+  data['courseName']=courseName;
+  data['question']=question;
+  data['correctOption']=correctOption;
+  data['option1']=option1;
+  data['option2']=option2;
+  data['option3']=option3;
+  data['option4']=option4;
+  data=JSON.stringify(data);
+
+
+  $.ajax({
+                url: '/api/insertquestion', // url where to submit the request
+                type : "post", // type of action POST || GET
+
+                data : data, // post data || get data
+                dataType : 'json',
+                contentType: "application/json; charset=utf-8",
+
+                success : function(result) {
+                    // you can see the result from the console
+                    // tab of the developer tools
+                    flag=result['msg']
+                    if(flag==1)
+                    {
+                      alert('Question added')
+                      location.reload();
+                    }
+                    else{
+                      alert("question not added in database");
+                      location.reload();
+
+                    }
+                },
+                error: function(xhr, resp, text) {
+                    console.log("error idhr");
+                    console.log(xhr, resp, text);
+                }
+            })
+
+
+
+
+
+
+
+  tag.removeChild(tag.firstElementChild);
+
+
+
+
+};
+
+
+
+    </script>
+  <style >
+          @import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+          .container1 {
+              max-width: 600px;
+              margin: auto;
+              background: white;
+              padding: 20px
+          }
+    .question{
+        background-color: #d2f9fe;font-size: 20px;
+
+    }
+    .answer {
+        font-size: 20px;
+    }
+    .button{
+         margin: 20px 0;
+        display: block;
+        padding: .7rem 2rem;
+        color: #FFF;
+        background: #154962;
+        border: none;
+        outline: none;
+        border-radius: 3px;
+        cursor: pointer;
+        font-size: 1rem;
+        transition: .3s ease-in;
+        height: auto;
+        width: auto;
+    }
+  </style>
+  <body style="">
+    <div class="container1" style="background-color:aliceblue; height: 10rem; margin-top:3px;">
+
+      <div id="divTag"></div>
+
+      <button class="btn btn-primary "  onclick="addQuestion()" >Add Question</button>
+      <button class="btn btn-primary" onclick="submitQuestion('{{courseName}}')" >Submit Question</button>
+
+
+<!-- <form action="/quiz" method="POST" role="form">
+        {% for question in form %}
+              <div class="question">
+                <h2>{{ question.label }}</h2>
+              </div><br>
+              <div class = "answer">
+                {{ question }}
+              </div>
+        {% endfor %}
+        <input class="button container btn btn1" type="submit" value = "Submit">
+      </form> -->
+              <a href="/editorHomePage" >back to previous page</a>
+
+
+</div>
+
+       <footer id="footerBG" class="container-fluid ">
+         <div class="row">
+             <ul id="footerurls">
+                 <li class="imgBG"> <a href="https://www.Facebook.com" target="_blank"><img class="logosize" src="../static/images/faceook_logo1.png" alt="No image"> Facebook</a></li>
+                 <li class="imgBG"><a href="https://www.Instagram.com"target="_blank"> <img class="logosize" src="../static/images/instagram_logo1.png" alt="No image"> Instagram</a></li>
+                 <li class="imgBG"> <a href="https://www.youtube.com"target="_blank"><img class="logosize" src="../static/images/youtube_logo1.png" alt="No image"> Youtube</a></li>
+             </ul>
+         </div>
+<!--        <div id="urls">-->
+<!--            <ul id="footerurls">-->
+<!--                <li class="imgBG"> <a href="https://www.Facebook.com" target="_blank"><img class="logosizem" src="static/images/faceook_logo1.png" alt="No image"> Facebook</a></li>-->
+<!--                <li class="imgBG"><a href="https://www.Instagram.com"target="_blank"> <img class="logosizem" src="static/images/instagram_logo1.png" alt="No image"> Instagram</a></li>-->
+<!--                <li class="imgBG"> <a href="https://www.youtube.com"target="_blank"><img class="logosizem" src="static/images/youtube_logo1.png" alt="No image"> Youtube</a></li>-->
+<!--            </ul>-->
+<!--      </div>-->
+ </footer>
+   <div id="copyright">
+        <p>EducateMe is optimized for learning, testing, and training. Examples might be simplified to improve reading and basic understanding. Tutorials, references, and examples are constantly reviewed to avoid errors, but we cannot warrant full correctness of all content. </p>
+        <h5>
+            Copyright © 2022 EducateMe.com
+        </h5>
+    </div>
+    <div >
+        <img  id="footerLogo" src="../static/images/logo1.1.png" alt="">
+    </div>
+
+  </body>
+
+    
+  </html>
+<!--    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>-->
+<!--    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>-->

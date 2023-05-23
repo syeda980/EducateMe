@@ -1,0 +1,90 @@
+
+.progresscardssection {
+    display: flex;
+    /* float: left; */
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 10px;
+    /* justify-content: space-evenly; */
+    
+}
+.progresscards{
+    background-color: aliceblue;
+    /* display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    box-shadow: 0 4px 8px 0 #0b0c0c;
+    border: 2px solid black;
+    justify-content: space-evenly;
+    padding-bottom: 30px;
+    margin: 10px;
+    flex: 0 1 22%; */
+    display: flex;
+    flex-direction: column;
+    height: 340px;
+    width: 309px;
+    box-shadow: 0 4px 8px 0 #0b0c0c;
+    border: 2px solid black;
+    /* position: relative; */
+    text-align: center;
+    /* margin: 0px 15px 5px 15px; */
+    margin-bottom: 10px;
+    margin-right: 47px;
+    margin-left: 47px;
+    padding: 27px 0px;
+    flex-wrap: wrap;
+    justify-content: space-evenly
+
+}
+
+.btn{
+    margin-left: -21px;
+}
+
+.continuebutton{
+    background-color: #154962;
+    color: #fff;
+    border: none;
+    height: 45px;
+    float:left;
+    /* width: 79%; */
+    width: 30%;
+    font-size: 15px;
+    font-family: 'Arima', cursive;
+    cursor: pointer;
+    margin-left: 39px;
+    margin-right: 6px;
+    padding-top: 3px;
+    /* background-color: rgb(98, 98, 147); */
+    border-radius: 30px;
+    text-align: center;
+}
+
+.progresscontinuesection{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;    
+}
+
+.progresstext{
+    margin-right: 20px;
+    text-align: center;
+    font-family: 'Arima', cursive;
+    font-size: 17px;
+}
+
+.progressCourseText{
+overflow-wrap: anywhere;
+margin:0px 20px;
+}
+
+#copyright h5{
+    display: block;
+    width: 100%;
+    margin: auto;
+    font-size: 20px;
+}
+#copyright p{
+    font-family: 'Arima', cursive;
+
+}

@@ -1,0 +1,297 @@
+       <!-- <link rel="stylesheet" href="/static/coursecard.css"> -->
+    <!-- <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.1.3/dist/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"> -->
+
+
+    {% extends "layout.html" %}
+    {% block body %}
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+
+<style>
+    #m2{
+        display: none;
+    }
+    #m{
+        display: none;
+    }
+</style>
+
+
+    <script>
+
+
+function go2(nr) {
+ 
+    if(document.getElementById('m2').style.display  == '')
+    {
+        document.getElementById('m2').style.display='block'
+
+    }
+    else{
+        document.getElementById('m2').style.display=''
+
+    }
+   
+  $('.container').fadeToggle(200);
+  $('#suggestions').fadeToggle(200);
+  $('#footerBG').fadeToggle(200);
+
+  $('.message2').toggleClass('comein');
+  $('.check2').toggleClass('scaledown');
+  $('#submit').fadeToggle(nr);
+
+ 
+
+}
+
+
+
+function go(nr) {
+
+    if(document.getElementById('m').style.display  == '')
+    {
+        document.getElementById('m').style.display='block'
+
+    }
+    else{
+        document.getElementById('m').style.display=''
+
+    }
+  $('.container').fadeToggle(200);
+  $('#suggestions').fadeToggle(200);
+  $('#footerBG').fadeToggle(200);
+
+  $('.message').toggleClass('comein');
+  $('.check').toggleClass('scaledown');
+  $('#submit').fadeToggle(nr);
+ 
+
+}
+
+
+    let popup = document.getElementById("popup");
+        function openPopup()
+        {
+            popup.classList.add("open-popup");
+        }
+        function closePopup()
+        {
+            popup.classList.remove("open-popup");
+        }
+
+
+
+        function getCourseName(courseName){
+        alert(courseName);
+
+        }
+
+        function fun(e){
+            console.log(e);
+
+            var courseName =e['value'];
+            console.log(courseName);
+
+
+
+            var data={}
+        data["courseName"]=courseName
+        courseName=JSON.stringify(data)
+        console.log('in enroll script',courseName);  
+        
+        
+        
+        
+        $.ajax({
+                url: '/api/enroll', // url where to submit the request
+                type : "post", // type of action POST || GET
+            
+                data : courseName, // post data || get data
+                dataType : 'json',
+                contentType: "application/json; charset=utf-8",
+
+                success : function(result) {
+                    // you can see the result from the console
+                    // tab of the developer tools
+                    console.log(result)
+
+                    result=result['msg']
+                    if (result=="True")
+                    {
+                        go(50)
+
+                     
+
+
+
+
+                    }
+                    else{
+
+                        go2(50)
+
+
+
+                    }
+                },
+                error: function(xhr, resp, text) {
+                    console.log("error idhr");
+                    console.log(xhr, resp, text);
+                    alert("Enrollment Failed")
+                }
+            })         
+
+        }
+
+        $(document).ready(function(){
+        // click on button submit
+        $("#submit").on('click', function(e){
+        	e.preventDefault();
+            // send ajax
+            console.log('in script');
+
+            
+
+
+            
+
+        });
+    });
+
+
+
+    </script>
+          <div id="m" class='message'>
+            <div class='check'>
+              &#10004;
+            </div>
+            <p>
+              Congratulations for the successfull enrollment in the course
+            </p>
+            
+            <button id='ok' onclick="go(500)" >
+              OK
+            </button>
+          </div>
+          
+          
+          <div id="m2" class='message2'>
+              <div class='check2'>
+                  ❌    </div>
+              <p>
+                You are already enrolled in this course
+              </p>
+              
+              <button id='ok2' onclick="go2(500)" >
+                OK
+              </button>
+            </div>
+            
+    <div id="welcome" class="container">
+        <h2>Welcome to EducateMe
+        </h2>
+        <hr>
+        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Sequi cum mollitia deserunt debitis autem nobis
+            dignissimos non blanditiis harum accusamus explicabo accusantium commodi earum labore, ad ea in sit fuga
+            repellendus voluptates facilis ratione aliquam ut. Laboriosam enim fugit fuga nemo non fugiat omnis, porro
+            expedita, facere laborum maiores blanditiis, odit atque modi odio explicabo ea totam maxime quam. Officia
+            dolorem illo nemo, inventore quam sunt, commodi in vero adipisci cupiditate aut sequi consectetur suscipit
+            maiores eveniet sint fuga dolores harum, non autem voluptates incidunt molestias quo vel. Molestias, unde.
+        </p>
+    </div>
+
+
+
+
+<!-- 
+       <div class='b'></div>
+<div class='bb'></div> -->
+ 
+
+
+
+
+ <h2 style="text-align:center">
+        OUR TOP COURSES
+    </h2>
+
+       {% if courses == -1 %}
+       <h3 style="text-align:center" >Sadly we have no top courses :(</h3>
+       {% endif %}
+
+{% if courses!=-1 %}
+
+    <div class="container">
+    <div class="cards grid-row">
+                        {% for course in courses %}
+
+        <div class="card" style="height: 370px;">
+        <div class="card-top">
+            <h5 style="margin-left: 3px">{{course[0]}}</h5>
+        </div>
+            <div class="card-info">
+
+
+<!--          <span class="date">Monday, Jan 20, 2021</span>-->
+            <div style="height: 12rem;">
+            <p class="excerpt">{{course[1]}}</p>
+            </div>
+             </div>
+        <div class="card-bottom flex-row">
+
+
+                <button type="submit"  onclick="fun(this)" id="submit" value="{{course[0]}}" name="enroll" class="enrollseeMore">Enroll Now</button>
+                <form action="/seemore" method="post">
+                <button name="submit" type="submit" value="{{course[0]}}"  class="enrollseeMore">See more</button></form>
+                </div>
+      </div>
+        {% endfor %}
+
+
+
+    </div>
+  </div>
+
+       {% endif %}
+
+
+
+    <div id="suggestions" class="suggestions row header" style="height: auto">
+        <div>
+              <form class="  form-inline " id="myformm" action="/suggestion_" method="Post">
+        <h2 id="suggestionText"class="text-center"style="margin-right: 10px">Suggest Something</h2>
+                   <button  class="btn btn-outline-primary btn-lg"  id="suggestionbutton"><a onclick=location.href='suggestion.html'>Suggestions</a></button>
+            </form>
+        </div>
+
+    </div>
+
+<!--    <div class="   suggestions  container-fluid row" style="border:2px solid red ; " >-->
+<!--                <form class="  form-inline "  id="myformm" action="/suggestion_" method="Post">-->
+
+<!--<h2 class="navbar-text  " >-->
+<!--    Suggest Something      </h2>-->
+<!--                    <button  class="btn btn-outline-primary btn-lg"  id="suggestionbuttonm"><a onclick=location.href='suggestion.html'>Suggestions</a></button>-->
+
+
+<!--                </form>-->
+<!--    </div>-->
+     <footer id="footerBG" class="container-fluid ">
+         <div class="row">
+             <ul id="footerurls">
+                 <li class="imgBG"> <a href="https://www.Facebook.com" target="_blank"><img class="logosize" src="static/images/faceook_logo1.png" alt="No image"> Facebook</a></li>
+                 <li class="imgBG"><a href="https://www.Instagram.com"target="_blank"> <img class="logosize" src="static/images/instagram_logo1.png" alt="No image"> Instagram</a></li>
+                 <li class="imgBG"> <a href="https://www.youtube.com"target="_blank"><img class="logosize" src="static/images/youtube_logo1.png" alt="No image"> Youtube</a></li>
+             </ul>
+         </div>
+<!--        <div id="urls">-->
+<!--            <ul id="footerurls">-->
+<!--                <li class="imgBG"> <a href="https://www.Facebook.com" target="_blank"><img class="logosizem" src="static/images/faceook_logo1.png" alt="No image"> Facebook</a></li>-->
+<!--                <li class="imgBG"><a href="https://www.Instagram.com"target="_blank"> <img class="logosizem" src="static/images/instagram_logo1.png" alt="No image"> Instagram</a></li>-->
+<!--                <li class="imgBG"> <a href="https://www.youtube.com"target="_blank"><img class="logosizem" src="static/images/youtube_logo1.png" alt="No image"> Youtube</a></li>-->
+<!--            </ul>-->
+<!--      </div>-->
+ </footer>
+
+    {% endblock %}
+

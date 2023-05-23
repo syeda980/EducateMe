@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://fonts.googleapis.com/css2?family=Arima:wght@600;700&family=Inconsolata&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="static/loginsignup.css">
+    <link rel="stylesheet" href="static/signin-up.css">
+    <title>LOGIN/SIGNUP</title>
+</head>
+<body>
+            {% if flag==True %}
+                 <h1>{{msg}}</h1>
+                 {% endif %}
+        <div class="container" id="container" style="margin-top: 2rem">
+        <div class="form-container sign-up-container">
+            <form action="/signup" method="post">
+                <h1>Create Account</h1>
+                <input type="text" placeholder="Name" name="userName" />
+                <input pattern="[a-zA-Z0-9._+]+@(yahoo.com|gmail.com|outlook.com)" type="email" placeholder="Email" name="userEmail" />
+                <input   required type="password" placeholder="Password" name="userPassword" />
+                <button id="SIGNUP" type="submit" name="submit">Sign Up</button>
+            </form>
+        </div>
+        <div class="form-container sign-in-container">
+<!--                            <button id="backBtn" type="submit"onclick="history.back()">&larr;</button>-->
+            <form action="/validatesignin" method="POST">
+
+                <h1>Sign in</h1>
+                <input type="email" placeholder="Email" name="email" />
+                <input type="password" required placeholder="Password" name="password" />
+                <a href="/forgotPassword"> <u> Forgot your password?</u></a>
+                <button id="SIGNIN" type="submit" name="submit">Sign In</button>
+            </form>
+        </div>
+        <div class="overlay-container">
+            <div class="overlay">
+                <div class="overlay-panel overlay-left">
+                    <h1>Welcome Back!</h1>
+                    <p>To keep connected with us please login with your personal info</p>
+                    <button class="ghost" id="signIn">Sign In</button>
+                </div>
+                <div class="overlay-panel overlay-right">
+                    <img id="logo" src="static/images/logo1.1.png" alt="" srcset="">
+                    <p>Enter your personal details and start journey with us</p>
+                    <button class="ghost" id="signUp">Sign Up</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+            <div class="MobileDisplay" id="MobileDisplay">
+    <div class="container-fluid">
+     <form  action="/validatesignin" method="POST" style="height: 26rem;">
+              <img class="img-responsve" style="height: 9rem;" src="static/images/logo1.1.png" alt="" srcset="">
+    <div class="form-group">
+      <input type="email" class="form-control" placeholder="Email" name="email">
+    </div>
+    <div class="form-group">
+      <input type="password" class="form-control" placeholder="Enter password" name="password">
+    </div>
+                <a href="/forgotPassword"> <u> Forgot your password?</u></a>
+
+    <button  type="submit" id="SIGNIN" class="btn ">Sign In</button>
+<!--        <div class="dropdown-divider"></div>-->
+  <a class="dropdown-item" id="MobileSignUp" onclick="displayfunc()">New Member? <u>Sign up</u></a>
+
+  </form>
+</div>
+</div>
+
+            {% if flag1==True %}
+            <div class="MobileDisplaySignUp" id="smallscreen">
+    <div class="container-fluid ">
+  <form  action="/signup" method="POST" style="height: 26rem;">
+      <img class="img-responsve" style="height: 9rem;" src="static/images/logo1.1.png" alt="" srcset="">
+             <div class="form-group">
+      <input type="text" class="form-control" id="name" placeholder="Enter your Name" name="userName">
+    </div>
+    <div class="form-group">
+      <input type="email" class="form-control" id="email" placeholder="Enter your Email" name="userEmail">
+    </div>
+    <div class="form-group">
+      <input type="password" class="form-control" id="pwd" placeholder="Enter your password" name="userPassword">
+    </div>
+    <button  type="submit" class="btn ">Sign Up</button>
+<!--        <div class="dropdown-divider"></div>-->
+
+  </form>
+                 {% endif %}
+</div>
+</div>
+
+    <script type="text/javascript">
+        const signUpButton = document.getElementById('signUp');
+        const signInButton = document.getElementById('signIn');
+          const container = document.getElementById('container');
+
+        const mobileSignUpClick=document.getElementById('MobileSignUp');
+        const mobileSignUp=document.getElementById('MobileDisplay');
+        const mobileSignUpContainer=document.getElementById('smallscreen');
+        // mobileSignUpClick.addEventListener('click',()=>{
+        //     mobileSignUp.style.display="None";
+        //     mobileSignUpContainer.style.display="block";
+        // });
+        function displayfunc()
+        {
+             mobileSignUp.style.display="None";
+            mobileSignUpContainer.style.display="block";
+            console.log("abcdefgh")
+
+        }
+        signUpButton.addEventListener('click', () => {
+            container.classList.add("right-panel-active");
+        });
+
+        signInButton.addEventListener('click', () => {
+            container.classList.remove("right-panel-active");
+        });
+
+    </script>
+</body>
+</html>

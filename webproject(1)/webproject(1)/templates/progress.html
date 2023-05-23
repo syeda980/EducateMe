@@ -1,0 +1,137 @@
+
+
+{% extends "layout.html" %}
+
+{% block body %}
+{% if errormsg==None %}
+
+<script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+
+<script>
+
+  function takeQuiz(progress,courseName)
+  {
+    if (progress!=100)
+    {
+      alert('you cannot give the quiz because you have not completed the course')
+      // alert(courseId)
+    }
+    else{
+      data={};
+
+      data['courseName']=courseName
+      data=JSON.stringify(data)
+      
+      $.ajax({
+                url: '/api/takequiz', // url where to submit the request
+                type : "post", // type of action POST || GET
+            
+                data : data, // post data || get data
+                dataType : 'json',
+                contentType: "application/json; charset=utf-8",
+
+                success : function(result) {
+                  
+                    quiz=result['quiz']
+                    if(quiz=='')
+                    {
+                      alert('Currently we have no quiz for this course')
+                    }
+                    else{
+                    console.log(quiz)
+                    d=[]
+                    d['1']=quiz
+
+                    for(let i=0;i<quiz.length;i+=1)
+                    {
+                      console.log(typeof(quiz[i]))
+                      // alert(quiz[i]);
+                      quiz[i]=quiz[i]+'-'
+
+                    }
+                    console.log(d);
+
+                    str="http://127.0.0.1:5000/displayquiz/"+quiz
+                    window.location=str
+                  }
+
+
+
+
+
+                    
+                },
+                error: function(xhr, resp, text) {
+                    console.log("error idhr");
+                    console.log(xhr, resp, text);
+                }
+            }) 
+      
+
+    }
+  }
+  
+  </script>
+    <div style="margin: 1rem">
+        <h2 class="text-center"style="font-family: 'Arima',cursive">Progress</h2>
+        <div class="container">
+          <div class="cards grid-row">
+            {%  for userCourse in userCourses %}
+
+          <div class="card" style="height: 370px;">
+          <div class="card-top">
+            <h5 style="margin-left: 3px">{{userCourse[0]}}</h5>
+          </div>
+              <div class="card-info" style="height: 12rem">
+                <p  class="progressCourseText excerpt" >{{userCourse[1]}} </p>
+
+            </div>
+        <div class="card-bottom flex-row">
+            <form action="/continueCourse" method="post">
+                    <button  type="submit" name="submit" value="{{userCourse[0]}}" class="continuebutton enrollseeMore">Continue</button>
+                        </form>
+            <di class="progresstext">
+                        Progress: <font color="#ee9720">{{userCourse[2]}}%</font>
+                    </di>
+
+      </div>
+                                                  <button  onclick="takeQuiz('{{userCourse[2]}}','{{userCourse[0]}}')" class="continuebutton enrollseeMore" style=" margin-top: 0.5rem;
+" >Take quiz</button>
+
+         </div>
+        {% endfor %}
+    </div>
+  </div>
+
+<!--        <div class="progresscardssection">-->
+<!--            {%  for userCourse in userCourses %}-->
+<!--            <div class="progresscards">-->
+<!--                <h3 class="Names">{{userCourse[0]}}</h3>-->
+<!--                <p  class="progressCourseText" >{{userCourse[1]}} </p>-->
+<!--                <div class="progresscontinuesection">-->
+<!--                    <form action="/continueCourse" method="post">-->
+<!--                    <button  type="submit" name="submit" value="{{userCourse[0]}}" class="continuebutton">Continue</button>-->
+<!--                        </form>-->
+<!--                    <di class="progresstext">-->
+<!--                        Progress: <font color="#ee9720">{{userCourse[2]}}%</font>-->
+<!--                    </di>-->
+<!--                    -->
+<!--                </div>-->
+<!--            </div>-->
+<!--    -->
+
+<!--            {% endfor %}-->
+{%endif%}
+            {%if errormsg!=None%}
+            <h4 style="font-family: 'Arima',cursive">YOU ARE CURRENTLY NOT ENROLLED IN ANY COURSE VISIT COURSES PAGE TO GET YOUR SELF ENROLLED</h4>
+            <a href="/courses" style="color: blue"><u>BACK TO COURSE PAGE</u></a>
+            {% endif%}
+
+
+
+    </div>
+
+
+{% endblock %}
+

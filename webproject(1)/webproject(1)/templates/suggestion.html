@@ -1,0 +1,85 @@
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jquery@3.6.0/dist/jquery.slim.min.js"></script>
+    <script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+{% extends "layout.html" %}
+{% block body %}
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+
+<script type="text/javascript" charset="utf8" src="https://cdn.datatables.net/1.10.19/js/jquery.dataTables.js"></script>
+
+
+    <!-- <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script> -->
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/js/bootstrap.bundle.min.js"></script> -->
+<script>
+
+    $(document).ready(function(){
+        // click on button submit
+        $("#submit").on('click', function(e){
+        	e.preventDefault();
+            // send ajax
+            var formdata = $("#form").serializeArray();
+            console.log(formdata);
+
+            var data = {};
+            $(formdata ).each(function(index, obj){
+                data[obj.name] = obj.value;
+            });
+            data=JSON.stringify(data);
+            console.log(data+"data ye hau");
+
+
+            $.ajax({
+                url: '/api/registerSuggestion', // url where to submit the request
+                type : "post", // type of action POST || GET
+            
+                data : data, // post data || get data
+                dataType : 'json',
+                contentType: "application/json; charset=utf-8",
+
+                success : function(result) {
+                    // you can see the result from the console
+                    // tab of the developer tools
+                    alert('Thank you for your suggestion')
+                    console.log(result);
+                },
+                error: function(xhr, resp, text) {
+                    alert('Suggestion not added')
+
+                    console.log("error idhr");
+                    console.log(xhr, resp, text);
+                }
+            });
+
+        });
+    });
+    </script>
+
+<div style="background-color: rgb(219,209,190);">
+<div class="container p-0">
+		<form id="form" action="" method="post">
+<!--			class="form"-->
+			<div class="row p-0 m-0">
+				<div class="input-group">
+					<label for="name">Name</label>
+					<input type="text" name="name" id="name" placeholder="Enter your name" required>
+				</div>
+			</div>
+			<div class="row1">
+                <div class="input-group">
+				    <label for="suggestion" style="width: 100%">Suggestion</label>
+				    <textarea rows="10" class="col-md-12" id="suggestion" name="suggestion" placeholder="Enter your Suggestion" required></textarea>
+                </div>
+			</div>
+			<div class="input-group">
+				<button class="btn btn-primary"  id="submit" name="submit" value="submit" class="btn" >Send</button>
+			</div>
+
+		</form>
+        <a href="/homescreen" class="link-primary !important " >Take me Home</a>
+
+</div>
+{% endblock%}
+</div>
+

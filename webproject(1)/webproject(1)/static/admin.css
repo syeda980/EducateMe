@@ -1,0 +1,266 @@
+body,footer{
+    background-color: #8fadad;
+    margin: 0px;
+}
+header {
+    height: 106px;
+    display: flex;
+    background-color: #0b0c0c;
+    width: 100%;
+}
+#logoAdminPanel{
+    width: 83px;
+    /* display: block; */
+    float: left;
+    margin-left: 10px;
+    margin-top: 5px
+}
+#welcomeEditor{
+    color: white;
+    font-size: 40px;
+    margin: auto;
+    font-family: 'Arima', cursive;
+    margin-left:218px
+}
+#logoutAdmin{
+    background-color: #154962;
+    color: #fff;
+    border: none;
+    /* border-radius: 10px; */
+    height: 48px;
+    width: 129px;
+    font-size: 27px;
+    font-family: 'Arima', cursive;
+    cursor: pointer;
+    margin-left: 39px;
+    margin-right: 16px;
+    /* margin-top: 10px; */
+    /* padding-top: 4px; */
+    /* background-color: rgb(98, 98, 147); */
+    border-radius: 30px;
+    text-align: center;
+    margin-top: 18px;
+}
+#editorInfo{
+    display: flex;
+flex-direction:row;
+    justify-content: space-between;
+    margin-top: 0px;
+    margin-left: 1px;
+    margin-right: 1px;
+    background-color: #8fadad;
+
+    /*border: 2px solid green;*/
+
+}
+.passwordButton{
+    background-color: #154962; 
+    color: #fff;
+    border: none;
+    /* border-radius: 10px; */
+        height: 51px;
+    width: 23rem;
+    font-size: 20px;
+    padding:10px;
+    font-family: 'Arima', cursive;
+    cursor: pointer;
+    /* margin-left: 39px; */
+    /* margin-right: 6px; */
+    /* padding-top: 3px; */
+    /* background-color: rgb(98, 98, 147); */
+    border-radius: 9px;
+    /* text-align: center; */
+    /* margin-top: -10px; */
+    border: 2px solid black;
+    /* background-color: white;
+    color: black; */
+    margin-top: 15px;
+    margin-left: 22px;
+
+}
+.buttonsMenu{
+    display: flex;
+    flex-direction: column;
+    width: auto;
+
+}
+#infoBox {
+    height:100%;
+    /* width: 22%; */
+    box-shadow: 0 4px 13px 0 #0b0c0c;
+    border: 2px solid black;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    /* margin: 0px 15px 5px 15px; */
+    margin-top: 11px;
+    margin-bottom: 10px;
+    margin-right: 40px;
+    margin-left: 47px;
+    padding: 33px 0px;
+    /* flex-wrap: wrap; */
+    justify-content: space-evenly;
+    background-color: aliceblue;
+    float: left
+}
+#infoTable{
+    border-collapse: collapse;
+}
+ 
+#editorCoursesTable td{
+border-bottom:1px solid black;
+font-family: 'Arima', cursive;
+word-wrap: break-word;
+border: 1px solid black;
+    text-align: center;
+
+}
+td{
+    border-bottom:1px solid black;
+    font-family: 'Arima', cursive;
+    word-wrap: break-word;
+}
+tr{
+    
+    border-bottom: 1px solid black;}
+
+#editorCoursesTable tr{
+    height: 46px;
+    border: 1px solid black;
+
+}
+#editorCoursesTable th{
+    border: 2px solid black;
+    text-align: center;
+    font-size: 20px;
+    font-family: 'Arima', cursive;
+    word-wrap: break-word;
+}
+
+#editorCourses{
+display:flex;
+flex-direction:column;
+margin-top: 10px;
+}
+#forgotpwdLink :hover{
+        color: #ee9720;
+;
+}
+
+#completeTable{
+    display: none;
+}
+
+#editorCoursesTable{
+margin:auto;
+border-collapse: collapse;
+width: 40%;
+border: 1px solid black;
+
+}
+
+.deleteButton{
+    background-color: #154962;
+    color: #fff;
+    border: none;
+    border-radius: 9px;
+    height: 29px;
+    width: 69px;
+    font-size: 18px;
+    font-family: 'Arima', cursive;
+    cursor: pointer;
+    margin: 3px 11px 5px 14px;
+}
+/*#addCourseButton{*/
+/*margin:auto;*/
+/*}*/
+/*#addCourseButton{*/
+/*margin-top:20px;*/
+/*}*/
+#addCourseBtn{
+    display: block;
+    width:5rem;
+ margin:auto;
+}
+
+.addCourseButton {
+    background-color: #8fadad;
+    border: none;
+    border-radius: 9px;
+    color: white;
+    height: 38px;
+    width: 143px;
+    font-size: 25px;
+    font-family: 'Arima', cursive;
+    cursor: pointer;
+    margin: 3px 11px 5px 14px;
+}
+.profileCard{
+    display: none;
+    position: absolute;
+    width: 25rem;
+    height: 30rem;
+    margin-top: 25px;
+    margin-left: 440px;
+    text-align: center;
+    border: 2px solid black;
+    background-color: aliceblue;
+    box-shadow: 0 4px 10px 0 #0b0c0c;
+    font-family: Arima,cursive;
+    padding: 15px;
+}
+.close{
+    text-align: center;
+    color: white;
+    float: right;
+    font-size: 32px;
+    font-weight: bolder;
+    /* border: 2px solid black; */
+    border-radius: 50%;
+    /* margin: -11px; */
+    width: 41px;
+    height: 40px;
+    background-color: #154962;
+}
+.profileCard button:hover{
+        cursor: pointer;
+
+}
+.close :hover{
+    color: #ee9720;
+    cursor: pointer;
+}
+
+#profileimg {
+    border-radius: 50%;
+    width: 227px;
+    height: auto;
+    padding-top: 9px;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-left: 46px
+}
+
+#coursesNotFound{
+    display: block;
+    margin: auto;
+    text-align: center;
+    font-family: Arima,cursive;
+    font-size: 20px;
+}
+.dataTables_paginate, .dataTables_info{
+    text-align: center;
+}
+.dataTables_length{
+    text-align: center;
+}
+@media only screen and (max-width: 950px) {
+    #addCourseBtn{
+        margin-left: 27rem;
+    }
+}
+@media only screen and (max-width: 1240px) {
+    #profile{
+        position: relative;
+    }
+}

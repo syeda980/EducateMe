@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>New Page Name</title>
+    <link rel="stylesheet" href="static/admin.css">
+    <link rel="stylesheet" href="static/home.css">
+    <link rel="stylesheet" href="static/getNewPageName.css">
+    <link href="https://fonts.googleapis.com/css2?family=Arima:wght@600;700&family=Inconsolata&display=swap"
+        rel="stylesheet">
+    <script src="https://code.jquery.com/jquery-3.6.1.min.js" integrity="sha256-o88AwQnZB+VDvE9tvIXrMQaPlFFSUTR+nldQm1LuPXQ=" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/js/bootstrap.min.js"></script>
+    <title>Title</title>
+    <style>
+        p
+        {
+            /* border: 2px solid black;*/
+            margin:0px;
+            padding:0px;
+        }
+        #divTag p
+        {
+            border: 2px solid black;
+        }
+        h1
+        {
+            text-align:center;
+            border: 2px solid black;
+        }
+        h3{
+                border: 2px solid black;
+
+        }
+        #madeinFooter
+        {
+            position: fixed;
+            left:0;
+            bottom:0;
+            width: 100%;
+        }
+        #sbBtn
+        {
+            display: flex;
+            justify-content: center;
+            /* width: 100%;
+            margin-top: 50px; */
+        }
+        #sbmtBtn
+        {
+            display: flex;
+            justify-content: center;
+            margin-top: 30px;
+        }
+    </style>
+
+    <script>
+
+// function addImage()
+// {
+// var tag = document.createElement("div");
+// // what is this commented code below? 
+// //<!--tag.contentEditable="true";-->
+// var img = document.createElement('img');
+// img.src = 'https://media.geeksforgeeks.org/wp-content/uploads/20190529122828/bs21.png';
+//             document.getElementById('divTag').appendChild(img);
+//              document.getElementById("divTag").appendChild(tag);
+
+// }
+
+function addMainHeading()
+{
+var heading1 = document.createElement("h1");
+heading1.contentEditable="true";
+document.getElementById("divTag").appendChild(heading1);
+}
+function addSubHeading()
+{
+var heading3 = document.createElement("h3");
+heading3.contentEditable="true";
+document.getElementById("divTag").appendChild(heading3);
+}
+
+function addText()
+{
+    var paragraph = document.createElement("p");
+    paragraph.contentEditable="true";
+    document.getElementById("divTag").appendChild(paragraph);
+}
+
+// function addVideo()
+// {
+// var tag = document.createElement("div");
+
+// const video = document.createElement('video');
+// //<!--var tag = document.createElement("p");-->
+// //<!--tag.contentEditable="true";-->
+
+
+
+// // 👇️ Local file
+// // video.src = 'video.mp4';
+
+// // 👇️ Remote file
+// video.src =
+// 'https://www.w3schools.com/html/mov_bbb.mp4'
+// video.poster =
+//   'https://peach.blender.org/wp-content/uploads/title_anouncement.jpg?x11217';
+
+// video.autoplay = true;
+// video.controls = true;
+// video.muted = false;
+// video.style.display='inline';
+//  // 👈️ in px
+
+
+
+
+// //<!-- <video controls autoplay name="media" id="myVideo" width="320" height="176">-->
+// //<!--&lt;!&ndash;  <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/mp4">&ndash;&gt;-->
+// //<!--  <source src="https://www.w3schools.com/html/mov_bbb.mp4" type="video/ogg">-->
+// //<!--  Your browser does not support HTML5 video.-->
+// //<!--</video>-->
+
+//  document.getElementById("divTag").appendChild(video);
+//               document.getElementById("divTag").appendChild(tag);
+
+// 
+
+function createTextFile(e)
+{
+  courseName=e['value']
+
+  pageName= document.getElementById('pageName').value
+  pageText= document.getElementById('divTag').childNodes
+  temp=pageText.values;
+
+  let text = "";
+  data={};
+
+
+s="courseName-"+courseName;
+key=1;
+data[key]=s;
+key=2;
+s="";
+s="pagename-"+pageName;
+data[key]=s;
+
+
+
+
+
+
+let keys=3;
+for (let i = 0; i < pageText.length; i++) {
+
+s="";
+s=pageText[i].nodeName+"-"+pageText[i].innerText;
+
+data[keys]=s;
+keys=keys+1;
+
+
+//<!--data[pageText[i].nodeName]= pageText[i].innerText;-->
+
+}
+
+
+
+data=JSON.stringify(data);
+//<!--alert(data[1]);-->
+
+
+  //courseName=e['value']
+
+
+   $.ajax({
+                url: '/api/inserttextapi', // url where to submit the request
+                type : "post", // type of action POST || GET
+
+                data : data, // post data || get data
+                dataType : 'json',
+                contentType: "application/json; charset=utf-8",
+
+                success : function(result) {
+                    // you can see the result from the console
+                    // tab of the developer tools
+                    alert('page added successfully')
+                    courseName=result['courseName']
+                    str="http://127.0.0.1:5000/my/"+courseName
+                    window.location=str
+                    
+                },
+                error: function(xhr, resp, text) {
+                    alert('page not added')
+                    console.log(xhr, resp, text);
+                }
+            })
+
+}
+    </script>
+
+</head>
+<body>
+
+<input style="width:17%" type="text" class="form-control" id="pageName" placeholder="Enter your page name">
+
+<div id="divTag"> </div>
+<div id="sbBtn">
+<button onclick="addText()" class="enrollseeMore">Add new Text</button>
+<button onclick="addMainHeading()" class="enrollseeMore">Add Main Heading</button>
+
+<button onclick="addSubHeading()" class="enrollseeMore">Add Sub Heading</button>
+</div>
+<div id="sbmtBtn">
+<form>
+    <button class="btn btn-info" value="{{courseName}}" onclick="createTextFile(this)" >Submit</button>
+</form>
+</div>
+   <!-- <footer id="footerBG">
+        <div id="urls">
+            <ul id="footerurls">
+                <li class="imgBG"> <a href="https://www.Facebook.com" target="_blank"><img class="logosize" src="static/images/faceook_logo1.png" alt="No image"> Facebook</a></li>
+                <li class="imgBG"><a href="https://www.Instagram.com"target="_blank"> <img class="logosize" src="static/images/instagram_logo1.png" alt="No image"> Instagram</a></li>
+                <li class="imgBG"> <a href="https://www.youtube.com"target="_blank"><img class="logosize" src="static/images/youtube_logo1.png" alt="No image"> Youtube</a></li>
+            </ul>
+        </div>
+
+
+    </footer> -->
+
+<!--    copyright and logo-->
+    <div id="madeinFooter">
+    <!-- <footer id="footerBG" class="container-fluid ">
+      <div class="row">
+            <ul id="footerurls">
+                <li class="imgBG"> <a href="https://www.Facebook.com" target="_blank"><img class="logosize"
+                            src="static/images/faceook_logo1.png" alt="No image"> Facebook</a></li>
+                <li class="imgBG"><a href="https://www.Instagram.com" target="_blank"> <img class="logosize"
+                            src="static/images/instagram_logo1.png" alt="No image"> Instagram</a></li>
+                <li class="imgBG"> <a href="https://www.youtube.com" target="_blank"><img class="logosize"
+                            src="static/images/youtube_logo1.png" alt="No image"> Youtube</a></li>
+            </ul>
+        </div> -->
+        <!--        <div id="urls">-->
+        <!--            <ul id="footerurls">-->
+        <!--                <li class="imgBG"> <a href="https://www.Facebook.com" target="_blank"><img class="logosizem" src="static/images/faceook_logo1.png" alt="No image"> Facebook</a></li>-->
+        <!--                <li class="imgBG"><a href="https://www.Instagram.com"target="_blank"> <img class="logosizem" src="static/images/instagram_logo1.png" alt="No image"> Instagram</a></li>-->
+        <!--                <li class="imgBG"> <a href="https://www.youtube.com"target="_blank"><img class="logosizem" src="static/images/youtube_logo1.png" alt="No image"> Youtube</a></li>-->
+        <!--            </ul>-->
+        <!--      </div>
+    </footer> -->
+    <div id="copyright">
+        <hr>
+        <p>EducateMe is optimized for learning, testing, and training. Examples might be simplified to improve reading and
+            basic understanding. Tutorials, references, and examples are constantly reviewed to avoid errors, but we cannot
+            warrant full correctness of all content. </p>
+        <h5>
+            Copyright © 2022 EducateMe.com
+        </h5>
+    </div>
+
+    <div >
+        <img  id="footerLogo" src="static/images/logo1.1.png" alt="">
+    </div>
+    </div>
+
+</body>
+</html>
+

@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{{pageName}}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/static/home.css">
+    <link href="https://fonts.googleapis.com/css2?family=Arima:wght@600;700&family=Inconsolata&display=swap"
+        rel="stylesheet">
+<!--    <script>-->
+
+<!--        var v={{pageContent}};-->
+<!--        console.log(v);-->
+
+
+
+<!--    </script>-->
+</head>
+<style>
+    h1{
+        text-align: left;
+        color: #154;
+        text-decoration: underline;
+
+    }
+    #textContainer{
+        border: 2px solid grey;
+        border-radius: 10px;
+        background-color: aliceblue;
+    }
+    .myButton{
+        border: 1px solid #154;
+        margin-top: 1rem;
+        background-color: aliceblue;
+        /* opacity: 50%; */
+        color: black;
+    }
+    .twoButtons{
+        display: flex;
+        justify-content: space-around;
+    }
+    h3{
+        text-align: left;
+        color: #154;
+    }
+</style>
+<body>
+<div class="container" >
+<div id="mydiv"></div>
+<h1  class="text-center p-3 mb-2 bg-secondary text-white " >{{pageName}}</h1>
+
+<div class="container" id="textContainer" >
+
+
+{% for singleLine in pageContent %}
+
+<p> {{singleLine| safe}} <div></div> </p>
+
+{% endfor %}
+</div>
+<br>
+
+<form action="/viewCoursePages" method="post">
+    <button class="enrollseeMore" type="submit" value={{courseName}} name="submit" >
+<a >Back to Course page</a>
+        </button>
+    </form>
+</div>
+
+</body>
+</html>
